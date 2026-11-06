@@ -19,8 +19,13 @@
         if (!r.ok) throw new Error();
         form.innerHTML =
           '<div class="form-thanks">' +
-          '<h3 class="serif">Got it, thank you!</h3>' +
-          '<p>Your enquiry is in my inbox. I\'ll be in touch within a day or two.</p>' +
+          '<span class="label muted">Message received</span>' +
+          '<h3 class="serif">Got it. <em>Sharp and in focus.</em></h3>' +
+          '<p>Thanks for reaching out! Your enquiry has landed safely in my inbox. ' +
+          'I\'ll get back to you within 48 hours. Unless I\'m lying on a court floor ' +
+          'chasing the perfect angle. Then maybe 49.</p>' +
+          '<p class="small">Can\'t wait? Have a scroll of my latest work on ' +
+          '<a href="https://instagram.com/ammedia_nz">@ammedia_nz</a>.</p>' +
           '</div>';
       })
       .catch(function () {

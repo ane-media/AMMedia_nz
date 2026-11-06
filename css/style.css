@@ -975,5 +975,8 @@ html { scroll-behavior: smooth; }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
 .form-thanks { text-align: center; padding: 48px 0; }
-.form-thanks h3 { font-size: 36px; font-weight: 300; color: var(--ink); margin-bottom: 12px; }
+.form-thanks { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.form-thanks h3 { font-size: 40px; font-weight: 300; color: var(--ink); margin: 0; line-height: 1.1; }
+.form-thanks p { max-width: 460px; margin: 0; }
+.form-thanks a { color: var(--accent); }
 .form-error { color: var(--accent); font-size: 14px; margin: 0; }
