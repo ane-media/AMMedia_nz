@@ -404,8 +404,11 @@
     </div>
   </div>
 
-  <!-- Enquiry form -->
-  <form class="form" action="mailto:ane@ammedianz.com?subject=Booking%20enquiry" method="post" enctype="text/plain">
+  <!-- Enquiry form — sends to your inbox through Formspree (formspree.io, form xaeezndr).
+       js/form.js keeps visitors on the page and shows a thank-you. -->
+  <form class="form" id="enquiry" action="https://formspree.io/f/xaeezndr" method="POST">
+    <input type="hidden" name="_subject" value="New booking enquiry — AM Media NZ">
+    <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="form-row">
       <label class="field label">Name<input type="text" name="name" autocomplete="name" required></label>
       <label class="field label">Email<input type="email" name="email" autocomplete="email" required></label>
@@ -498,6 +501,7 @@
 <script src="js/exif-flip.js" defer></script>
 <script src="js/aperture.js" defer></script>
 <script src="js/motion.js" defer></script>
+<script src="js/form.js" defer></script>
 
 </body>
 </html>

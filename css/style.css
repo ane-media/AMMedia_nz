@@ -966,3 +966,14 @@ html { scroll-behavior: smooth; }
 @media (max-width: 900px) {
   .wedding-notes { grid-template-columns: 1fr; gap: 40px; }
 }
+
+/* 25. ENQUIRY FORM STATES =================================================
+   js/form.js → thank-you message, error line, hidden spam trap.
+   ========================================================================== */
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.form-thanks { text-align: center; padding: 48px 0; }
+.form-thanks h3 { font-size: 36px; font-weight: 300; color: var(--ink); margin-bottom: 12px; }
+.form-error { color: var(--accent); font-size: 14px; margin: 0; }

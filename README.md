@@ -76,16 +76,13 @@ Search VS Code for `[` to find them all:
 - `portraits-weddings.html` → `[WEDDING PRICE]`
 - `projects.html` → the moto and mountain bike photos and their `alt="[…]"`
 
-## Make the form send
+## The enquiry form
 
-Right now the enquiry form opens the visitor's email app. To get enquiries straight to your inbox:
+Enquiries go straight to your inbox through Formspree (form `xaeezndr`).
 
-1. Sign up free at [formspree.io](https://formspree.io) and create a form.
-2. In `index.html`, find `<form class="form" action="mailto:…"`.
-3. Replace the whole `action="…" method="post" enctype="text/plain"` with
-   `action="https://formspree.io/f/YOUR-ID" method="POST"`.
-
-(On Netlify, add `data-netlify="true"` to the `<form>` tag instead.)
+- Change where they're sent, see submissions or turn on spam filtering at [formspree.io](https://formspree.io).
+- `js/form.js` keeps visitors on the page and shows a thank-you message.
+- The hidden `_gotcha` field catches spam bots. Leave it in.
 
 ## Hosting it
 
