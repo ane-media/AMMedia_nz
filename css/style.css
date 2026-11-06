@@ -1,0 +1,968 @@
+/* ==========================================================================
+   AM MEDIA NZ — MAIN STYLESHEET
+   One file styles every page. Change a colour or font here and it updates
+   across the whole site.
+
+   CONTENTS
+   01. Brand tokens (colours, fonts)
+   02. Base / reset
+   03. Typography
+   04. Layout helpers
+   05. Buttons
+   06. Header & navigation
+   07. Photos (image frames)
+   08. Home — hero
+   09. Home — discipline rows
+   10. Home — philosophy quote
+   11. Home — recent work list
+   12. Home — about
+   13. Home — investment (prices)
+   14. Home — enquire (booking)
+   15. Instagram strip
+   16. Footer
+   17. Discipline pages
+   19. Aperture ring (right edge, desktop)
+   18. Responsive (tablet & phone)
+   20. Depth & motion (soft shadows, fade-ups)
+   21. Projects page, dark theme, home teaser & manifesto
+   22. EXIF flip cards (click a photo for camera settings)
+   ========================================================================== */
+
+
+/* 01. BRAND TOKENS ======================================================== */
+:root {
+  --ink:        #0c0c0c;  /* headings, buttons */
+  --text:       #3a3a3a;  /* body copy */
+  --muted:      #6e6a64;  /* captions, labels */
+  --line:       #ddd7ce;  /* hairlines */
+  --line-dark:  #a8a49d;  /* stronger hairlines, input underlines */
+  --ground:     #fafafa;  /* page background */
+  --stone:      #f2efe9;  /* alternate section background */
+  --frame:      #e8e3db;  /* empty photo frame */
+  --accent:     #b54a1c;  /* small orange text (numerals, "NZ") */
+  --accent-lt:  #e8753f;  /* orange on dark backgrounds */
+
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:  'DM Sans', Arial, system-ui, sans-serif;
+}
+
+
+/* 02. BASE / RESET ======================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, figure, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+a { color: var(--ink); }
+a:hover { color: var(--accent); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+
+/* 03. TYPOGRAPHY ========================================================== */
+.serif {
+  font-family: var(--serif);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+.serif em, .italic { font-style: italic; }
+
+.label {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.display  { font-size: clamp(56px, 8vw, 116px); line-height: 0.98; color: var(--ink); }
+.heading  { font-size: clamp(40px, 5vw, 66px);  line-height: 1.05; color: var(--ink); }
+.title    { font-size: clamp(36px, 4vw, 56px);  line-height: 1;    color: var(--ink); }
+.numeral  { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--accent); }
+
+.lead     { font-size: 18px; line-height: 1.8; }
+.small    { font-size: 15px; line-height: 1.7; }
+.fine     { font-size: 12px; color: var(--muted); }
+
+.muted    { color: var(--muted); }
+.accent   { color: var(--accent); }
+.ink      { color: var(--ink); }
+
+
+/* 04. LAYOUT HELPERS ====================================================== */
+.container    { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.container-md { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.container-sm { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.container-xs { max-width: 920px;  margin: 0 auto; padding: 0 24px; }
+
+.section      { padding-top: 128px; padding-bottom: 128px; }
+.section-alt  { background: var(--stone); }
+.border-top   { border-top: 1px solid var(--line); }
+
+/* Centred stack: label + heading + text, centred */
+.stack-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+.stack { display: flex; flex-direction: column; gap: 20px; }
+
+/* Two columns that wrap on small screens */
+.split { display: flex; flex-wrap: wrap; gap: 80px; align-items: center; }
+.split > * { flex: 1 1 380px; min-width: 0; }
+
+.vline { width: 1px; height: 56px; background: var(--line-dark); }
+
+
+/* 05. BUTTONS ============================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 36px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.btn:hover       { background: var(--ink); color: var(--ground); }
+.btn-fill        { background: var(--ink); color: var(--ground); }
+.btn-fill:hover  { background: var(--text); color: var(--ground); }
+.btn-small       { min-height: 44px; padding: 0 22px; }
+.btn-row         { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+
+/* 06. HEADER & NAVIGATION ================================================= */
+.site-header { border-bottom: 1px solid var(--line); background: var(--ground); }
+
+.header-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.nav-left  { display: flex; gap: 22px; letter-spacing: 0.2em; white-space: nowrap; }
+.nav-right { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 28px; }
+
+.nav-link { color: var(--text); text-decoration: none; }
+.nav-link:hover { color: var(--accent); }
+.nav-link.is-active { color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
+
+/* Wordmark */
+.brand {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  text-align: center;
+}
+.brand-name {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.42em;
+  padding-left: 0.42em;
+  color: var(--ink);
+}
+.brand-name span { color: var(--accent); }
+.brand-tag { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted); }
+
+/* Phone menu (hidden on desktop) */
+.mobile-menu { display: none; position: relative; }
+.mobile-menu summary { cursor: pointer; list-style: none; color: var(--ink); }
+.mobile-menu summary::-webkit-details-marker { display: none; }
+.mobile-menu nav {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 16px);
+  z-index: 10;
+  min-width: 220px;
+  padding: 20px 24px;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* 07. PHOTOS (IMAGE FRAMES) ================================================
+   Every picture sits inside a .photo frame. The frame sets the shape
+   (ratio-*), and the <img> fills it. Swap the image file and the layout
+   stays the same.
+   ========================================================================== */
+.photo { position: relative; overflow: hidden; background: var(--frame); }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo-dark { background: #1e1e1e; }
+
+.ratio-16-8 { aspect-ratio: 16 / 8; }
+.ratio-16-7 { aspect-ratio: 16 / 7; }
+.ratio-4-3  { aspect-ratio: 4 / 3; }
+.ratio-3-2  { aspect-ratio: 3 / 2; }
+.ratio-4-5  { aspect-ratio: 4 / 5; }
+.ratio-1-1  { aspect-ratio: 1 / 1; }
+
+figcaption { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--muted); margin-top: 14px; }
+
+
+/* 08. HOME — HERO ========================================================= */
+.hero-image { padding-top: 24px; }
+.hero-text  { padding-top: 104px; padding-bottom: 120px; gap: 32px; }
+.hero-text .lead { max-width: 580px; }
+
+
+/* 09. HOME — DISCIPLINE ROWS ============================================== */
+.disc-intro { padding-bottom: 72px; }
+
+.disc-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+  align-items: center;
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+.disc-row:last-child { border-bottom: 1px solid var(--line); }
+.disc-row.reverse    { flex-direction: row-reverse; }
+
+.disc-row .photo { flex: 1 1 520px; min-width: 0; }
+.disc-text       { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.disc-text p     { font-size: 16px; line-height: 1.75; max-width: 440px; }
+
+.more { color: var(--ink); padding-top: 8px; }
+.disc-row:hover .more { color: var(--accent); }
+
+
+/* 10. HOME — PHILOSOPHY QUOTE ============================================= */
+.quote-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+
+/* 11. HOME — RECENT WORK LIST ============================================= */
+.project-list { border-top: 1px solid var(--line); margin-top: 56px; }
+
+.project-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr 3fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+.project-row:hover .project-name { color: var(--accent); }
+.project-name { font-family: var(--serif); font-weight: 300; font-size: 30px; color: var(--ink); }
+.project-cat  { color: var(--muted); }
+.project-desc { font-size: 15px; line-height: 1.6; }
+
+
+/* 12. HOME — ABOUT ======================================================== */
+.about-photo { max-width: 480px; }
+.about-text  { gap: 26px; }
+.about-text p { max-width: 560px; font-size: 16px; line-height: 1.85; }
+.about-text p.lead { font-size: 18px; color: var(--ink); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  margin-top: 16px;
+}
+.stat { padding: 24px 16px 0; display: flex; flex-direction: column; gap: 8px; }
+.stat:first-child { padding-left: 0; }
+.stat + .stat { border-left: 1px solid var(--line); }
+.stat-num   { font-family: var(--serif); font-weight: 300; font-size: 48px; line-height: 1; color: var(--ink); }
+.stat-label { font-size: 10px; color: var(--muted); }
+
+
+/* 13. HOME — INVESTMENT (PRICES) ========================================== */
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 72px 0;
+}
+.price-card {
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.price-card + .price-card { border-left: 1px solid var(--line); }
+.price-card p { max-width: 260px; font-size: 15px; }
+/* What's included — thin rule between lines */
+.price-includes {
+  list-style: none; margin: 8px 0 0; padding: 0;
+  width: 100%; max-width: 260px; font-size: 14px; color: var(--text);
+}
+.price-includes li { padding: 10px 0; border-top: 1px solid var(--line); }
+.price-includes li:last-child { border-bottom: 1px solid var(--line); }
+.price-amount { font-family: var(--serif); font-weight: 300; font-size: 72px; line-height: 1; color: var(--ink); }
+.price-unit   { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--muted); }
+
+.price-details { display: flex; flex-wrap: wrap; gap: 72px; }
+.price-details > * { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.price-example { flex: 1 1 460px; }
+.price-notes   { flex: 1 1 300px; }
+.price-details h3 { font-family: var(--serif); font-weight: 300; font-size: 28px; color: var(--ink); }
+
+.table-wrap { overflow-x: auto; }
+.quote-table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 15px; }
+.quote-table th { font-weight: 400; text-align: left; color: var(--muted); padding: 12px 8px; border-bottom: 1px solid var(--line-dark); }
+.quote-table td { padding: 16px 8px; border-bottom: 1px solid var(--line); }
+.quote-table th:first-child, .quote-table td:first-child { padding-left: 0; }
+.quote-table th:last-child,  .quote-table td:last-child  { padding-right: 0; text-align: right; }
+.quote-table td:first-child { color: var(--ink); }
+.quote-table .total td { border-bottom: 0; padding-top: 20px; }
+.quote-table .total-amount { font-family: var(--serif); font-size: 40px; line-height: 1; color: var(--ink); }
+
+.info-list { border-top: 1px solid var(--line-dark); font-size: 15px; line-height: 1.6; }
+.info-list li { padding: 16px 0; border-bottom: 1px solid var(--line); }
+
+
+/* 14. HOME — ENQUIRE (BOOKING) ============================================ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+  margin: 72px 0;
+  text-align: center;
+}
+.step { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.step h3 { font-family: var(--serif); font-weight: 300; font-size: 26px; color: var(--ink); }
+.step p  { max-width: 260px; font-size: 15px; }
+
+.form { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+.form-row { display: flex; flex-wrap: wrap; gap: 28px; }
+.field { flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px; color: var(--muted); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-dark);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--ink);
+}
+.field textarea { resize: vertical; }
+.form-submit { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 8px; text-align: center; }
+
+.contact-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 40px;
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.contact-line a { font-family: var(--serif); font-size: 22px; text-decoration: none; }
+
+
+/* 15. INSTAGRAM STRIP ===================================================== */
+.insta { padding-bottom: 8px; }
+.insta-title { text-align: center; padding: 0 24px 28px; }
+/* Always ONE full row. The number of tiles changes with screen width,
+   and any tiles that don't fit are hidden. There are 8 tiles in the HTML,
+   enough for the widest layout. */
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);          /* phones: 3 tiles */
+  gap: 8px;
+  padding: 0 8px;
+}
+.insta-grid a { display: block; }
+.insta-grid a:nth-child(n+4) { display: none; }
+
+@media (min-width: 600px) {                       /* small tablets: 4 */
+  .insta-grid { grid-template-columns: repeat(4, 1fr); }
+  .insta-grid a:nth-child(-n+4) { display: block; }
+}
+@media (min-width: 900px) {                       /* tablets: 5 */
+  .insta-grid { grid-template-columns: repeat(5, 1fr); }
+  .insta-grid a:nth-child(-n+5) { display: block; }
+}
+@media (min-width: 1280px) {                      /* laptops: 6 */
+  .insta-grid { grid-template-columns: repeat(6, 1fr); }
+  .insta-grid a:nth-child(-n+6) { display: block; }
+}
+@media (min-width: 1680px) {                      /* big screens: 8 */
+  .insta-grid { grid-template-columns: repeat(8, 1fr); }
+  .insta-grid a:nth-child(-n+8) { display: block; }
+}
+
+
+/* 16. FOOTER ============================================================== */
+.site-footer { background: var(--ink); color: var(--line-dark); }
+.footer-inner {
+  padding-top: 80px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  text-align: center;
+}
+.site-footer.compact .footer-inner { padding-top: 56px; padding-bottom: 56px; gap: 20px; }
+.site-footer .brand-name { color: var(--ground); font-size: 20px; }
+.site-footer .brand-name span { color: var(--accent-lt); }
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 32px; }
+.footer-nav a { color: var(--line); text-decoration: none; }
+.footer-nav a:hover { color: var(--accent-lt); }
+.site-footer .serif { font-style: italic; font-size: 17px; }
+.copyright { font-size: 12px; letter-spacing: 0.1em; }
+
+
+/* 17. DISCIPLINE PAGES ==================================================== */
+.page-intro { padding-top: 96px; padding-bottom: 72px; gap: 28px; }
+.page-intro p { max-width: 600px; }
+.crumb a { color: var(--muted); text-decoration: none; }
+.crumb a:hover { color: var(--accent); }
+
+/* "What I cover" — heading left, list right */
+.offering { display: flex; flex-wrap: wrap; gap: 72px; }
+.offering-head { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.offering-list {
+  flex: 2 1 560px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  column-gap: 48px;
+  border-top: 1px solid var(--line);
+}
+.offer { padding: 28px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.offer h3 { font-family: var(--serif); font-weight: 300; font-size: 26px; color: var(--ink); }
+.offer p  { font-size: 15px; }
+
+/* Gallery grid */
+.gallery { padding-bottom: 128px; }
+/* Fixed column counts so rows always come out even:
+   6 photos = 3 + 3, 8 photos (.tight) = 4 + 4, 3 photos = one row */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gallery-grid.tight { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) {
+  .gallery-grid, .gallery-grid.tight { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  /* An odd photo out spans the full width as a feature shot */
+  .gallery-grid > .photo:last-child:nth-child(odd) { grid-column: 1 / -1; aspect-ratio: 3 / 2; }
+}
+.gallery-more { text-align: center; padding-top: 32px; }
+
+/* Ideal for + recent commission */
+.feature { display: flex; flex-wrap: wrap; gap: 80px; padding-top: 112px; padding-bottom: 112px; }
+.feature > * { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.ideal-list { border-top: 1px solid var(--line-dark); }
+.ideal-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--ink);
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+}
+.ideal-list .numeral { font-size: 20px; min-width: 28px; }
+
+/* Closing call to action */
+.cta { gap: 26px; }
+.cta .price-unit { font-size: 20px; }
+
+/* Portraits page — text beside a tall photo */
+.intro-split { padding-top: 96px; padding-bottom: 128px; }
+.intro-split .stack { gap: 28px; }
+.intro-split .stack p { max-width: 480px; }
+.intro-split figure { max-width: 520px; }
+
+
+/* 19. APERTURE RING =======================================================
+   Fixed f-stop ring on the right edge (desktop only).
+   The movement lives in js/aperture.js.
+   ========================================================================== */
+.aperture {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 64px;
+  z-index: 20;
+  border-left: 1px solid var(--line);
+  background: var(--ground);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Ridged grip on the outer edge, like a lens barrel */
+.aperture::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 14px;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(12,12,12,.10) 3px 4px),
+    var(--stone);
+  border-left: 1px solid var(--line);
+}
+
+/* Curved shading: fades marks towards the top and bottom of the ring */
+.aperture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    var(--ground) 0%, rgba(250,250,250,0) 30%,
+    rgba(250,250,250,0) 70%, var(--ground) 100%);
+}
+
+/* The turning face that holds the numbers and ticks */
+.aperture-face {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 14px;
+  perspective: 600px;
+}
+.aperture-face > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+.aperture-num {
+  top: -8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 16px;
+  color: var(--muted);
+  transition: color .3s;
+}
+.aperture-num.is-set { color: var(--ink); font-weight: 500; }
+.aperture-tick {
+  top: 0;
+  height: 1px;
+  margin: 0 auto;
+  width: 10px;
+  background: var(--line-dark);
+}
+
+/* Orange index mark — the "current setting" pointer */
+.aperture-index {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid var(--accent);
+}
+
+/* Small "f/2.8" read-out at the bottom */
+.aperture-readout {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 14px;
+  z-index: 2;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accent);
+}
+
+@media (min-width: 1181px) {
+  .aperture { display: block; }
+  body { padding-right: 64px; }
+}
+
+
+/* 18. RESPONSIVE ========================================================== */
+/* Header switches to the phone menu below 1280px */
+@media (max-width: 1280px) {
+  .nav-left, .nav-right > .nav-link { display: none; }
+  .mobile-menu { display: block; }
+  .header-inner { grid-template-columns: auto 1fr; }
+  .brand { grid-column: 1; align-items: flex-start; text-align: left; }
+  .brand-name { padding-left: 0; }
+  .nav-right { flex-wrap: nowrap; gap: 20px; }
+}
+
+@media (max-width: 900px) {
+
+  .section { padding-top: 88px; padding-bottom: 88px; }
+  .disc-row, .disc-row.reverse { flex-direction: column; gap: 32px; align-items: stretch; }
+  .disc-row .photo, .disc-text { flex: none; width: 100%; }
+
+  .project-row { grid-template-columns: 1fr; gap: 6px; }
+
+  .price-card + .price-card { border-left: 0; border-top: 1px solid var(--line); }
+}
+
+@media (max-width: 520px) {
+  .brand-name { font-size: 14px; letter-spacing: 0.3em; }
+  .brand-tag { display: none; }
+  .stat-num { font-size: 36px; }
+}
+
+
+/* 20. DEPTH & MOTION ======================================================
+   Kept deliberately quiet: soft shadows, slow image zooms on hover,
+   and one gentle fade-up per section. Behaviour lives in js/motion.js.
+   ========================================================================== */
+:root {
+  --shadow-soft: 0 1px 2px rgba(12,12,12,.04), 0 14px 34px -20px rgba(12,12,12,.28);
+  --ease-calm:   cubic-bezier(.22, .61, .36, 1);
+}
+
+/* Smooth scroll for menu links, landing below the sticky header */
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 130px; }
+
+/* Sticky, frosted header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(250,250,250,.9);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: box-shadow .4s var(--ease-calm), border-color .4s;
+}
+.site-header.is-scrolled {
+  border-bottom-color: transparent;
+  box-shadow: 0 8px 24px -18px rgba(12,12,12,.35);
+}
+
+/* A whisper of depth under photos */
+.photo { box-shadow: var(--shadow-soft); }
+.insta-grid > a { box-shadow: none; }
+
+/* Slow zoom inside the frame on hover — the frame itself stays put */
+.disc-row img,
+.gallery-grid > .photo img,
+.insta-grid > a img { transition: transform 1.2s var(--ease-calm); }
+.disc-row:hover img,
+.gallery-grid > .photo:hover img,
+.insta-grid > a:hover img { transform: scale(1.03); }
+
+/* Price cards: quiet raised cards */
+.price-grid { gap: 24px; border: 0; }
+.price-card,
+.price-card + .price-card { border: 0; background: #fff; box-shadow: var(--shadow-soft); }
+.price-card.featured { border-top: 2px solid var(--accent); }
+
+/* Aperture ring: barrel shading for a rounded feel */
+.aperture { box-shadow: -12px 0 24px -20px rgba(12,12,12,.25); }
+.aperture::before {
+  background:
+    linear-gradient(to right, rgba(12,12,12,.08), rgba(255,255,255,.5) 45%, rgba(12,12,12,.10)),
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(12,12,12,.12) 3px 4px),
+    var(--stone);
+}
+
+/* One gentle fade-up per section (classes added by js/motion.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .8s var(--ease-calm), transform .8s var(--ease-calm);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  *, *::before, *::after { transition-duration: 0s !important; }
+}
+
+
+/* 21. PROJECTS & DARK PAGES ===============================================
+   The Projects page (and any page with <body class="theme-dark">) flips
+   the palette to dark. Everything else on the site stays light.
+   ========================================================================== */
+.theme-dark {
+  --ink:       #fafafa;
+  --text:      #ddd7ce;
+  --muted:     #a8a49d;
+  --line:      #2c2c2c;
+  --line-dark: #6e6a64;
+  --ground:    #0c0c0c;
+  --stone:     #161616;
+  --frame:     #1e1e1e;
+  --accent:    #e8753f;
+  --shadow-soft: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -20px rgba(0,0,0,.8);
+}
+.theme-dark .site-header { background: rgba(12,12,12,.86); }
+.theme-dark .site-footer { background: #000; border-top: 1px solid var(--line); }
+.theme-dark .site-footer .brand-name { color: #fafafa; }
+.theme-dark .aperture::after {
+  background: linear-gradient(to bottom, var(--ground) 0%, rgba(12,12,12,0) 30%, rgba(12,12,12,0) 70%, var(--ground) 100%);
+}
+.theme-dark .aperture::before {
+  background:
+    linear-gradient(to right, rgba(0,0,0,.4), rgba(255,255,255,.06) 45%, rgba(0,0,0,.45)),
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.08) 3px 4px),
+    #1e1e1e;
+}
+
+/* Video hero: a <video> inside a .photo frame fills it like an image */
+.photo video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Home — Projects teaser band */
+.teaser { background: #0c0c0c; color: #ddd7ce; }
+.teaser .photo { background: #1e1e1e; box-shadow: none; }
+.teaser-inner { display: flex; flex-wrap: wrap; gap: 64px; align-items: center; }
+.teaser-inner .photo { flex: 1.4 1 520px; min-width: 0; }
+.teaser-inner .photo.ratio-4-5 { flex: 0 1 460px; }   /* portrait teaser photo */
+.teaser-text { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.teaser-text .title, .teaser-text .heading { color: #fafafa; }
+.teaser-text .muted { color: #a8a49d; }
+.teaser-text .accent, .teaser .numeral { color: #e8753f; }
+.teaser .btn { border-color: #fafafa; color: #fafafa; align-self: flex-start; }
+.teaser .btn:hover { background: #fafafa; color: #0c0c0c; }
+
+/* Status tag, e.g. "In progress · 2026" */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+}
+.status::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.status.planned::before { background: transparent; border: 1px solid var(--muted); }
+
+/* Projects page — one project block */
+.project { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--line); }
+.project-head { display: flex; flex-wrap: wrap; gap: 48px 80px; margin-top: 48px; }
+.project-head > div:first-child { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.project-head > div:last-child  { flex: 1.3 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.project-head p { font-size: 17px; line-height: 1.8; }
+.project .gallery-grid { margin-top: 56px; }
+.project-num { font-family: var(--serif); font-style: italic; font-size: 26px; color: var(--accent); }
+
+/* "Next on the list" cards */
+.horizon {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 56px;
+}
+.horizon-card { display: flex; flex-direction: column; gap: 14px; }
+.horizon-card h3 { font-family: var(--serif); font-weight: 300; font-size: 30px; color: var(--ink); }
+.horizon-card p { font-size: 15px; }
+
+/* Brands & media checklist */
+.brand-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  column-gap: 48px;
+  border-top: 1px solid var(--line-dark);
+  margin-top: 48px;
+}
+.brand-list li { padding: 22px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+.brand-list h3 { font-family: var(--serif); font-weight: 300; font-size: 24px; color: var(--ink); }
+.brand-list p { font-size: 15px; }
+
+/* Home — "Seen" manifesto */
+.manifesto-text {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1.15;
+  color: var(--ink);
+  max-width: 900px;
+}
+.manifesto-quote { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--muted); max-width: 640px; }
+
+
+/* 22. EXIF FLIP CARDS =====================================================
+   Click a photo to flip it and see the camera settings.
+   Behaviour lives in js/exif-flip.js. Only photos with camera data flip.
+   ========================================================================== */
+.photo.flip { cursor: pointer; perspective: 1400px; overflow: visible; container-type: size; }   /* card text sizes itself to this frame */
+.photo.flip:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.flip-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.3, .7, .2, 1);
+}
+.photo.flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+
+.flip-front, .flip-back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-front img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Small "f/" badge — shows on hover, always on touch screens */
+.flip-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(12,12,12,.6);
+  color: #fafafa;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.photo.flip:hover .flip-hint, .photo.flip:focus-visible .flip-hint { opacity: 1; }
+@media (hover: none) { .flip-hint { opacity: .85; } }
+
+/* The back of the card — sizes scale with the card itself (cq units),
+   so the text fits every crop: tall, landscape or wide banner. */
+.flip-back {
+  transform: rotateY(180deg);
+  background: #0c0c0c;
+  color: #ddd7ce;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(6px, 3.5cqh, 16px);
+  padding: clamp(14px, 7cqmin, 48px);
+}
+.flip-eyebrow { color: #e8753f; font-size: clamp(9px, 2.6cqmin, 11px); }
+.flip-settings {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(16px, 8.5cqmin, 34px);
+  line-height: 1.1;
+  color: #fafafa;
+}
+.flip-settings span { white-space: nowrap; }   /* keep "ISO 250" etc. on one line */
+.flip-list { margin: 0; display: flex; flex-direction: column; }
+.flip-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: clamp(4px, 2.2cqh, 9px) 0;
+  border-top: 1px solid #2c2c2c;
+}
+.flip-list dt { color: #a8a49d; font-size: clamp(8px, 2.4cqmin, 10px); flex-shrink: 0; }
+.flip-list dd {
+  margin: 0;
+  min-width: 0;
+  font-size: clamp(11px, 3.6cqmin, 14px);
+  line-height: 1.3;
+  text-align: right;
+  color: #fafafa;
+}
+.flip-close { color: #6e6a64; font-size: clamp(8px, 2.4cqmin, 10px); }
+
+/* Small frames: shed the least important lines, in order (classes set by js/exif-flip.js):
+   1 labels · 2 date · 3 focal length · 4 lens · 5 camera · 6 smaller headline */
+.flip-back.fit-1 .flip-eyebrow,
+.flip-back.fit-1 .flip-close { display: none; }
+.flip-back.fit-2 [data-k="taken"] { display: none; }
+.flip-back.fit-3 [data-k="focal"] { display: none; }
+.flip-back.fit-4 [data-k="lens"] { display: none; }
+.flip-back.fit-5 .flip-list { display: none; }
+.flip-back.fit-6 { padding: 10px; }
+.flip-back.fit-6 .flip-settings { font-size: 13px; }
+
+/* Wide, short frames (page heroes): settings left, details right */
+.ratio-16-7 .flip-back { display: grid; grid-template-columns: 1fr 1.2fr; column-gap: 6cqw; align-content: center; }
+.ratio-16-7 .flip-back .flip-list { grid-column: 2; grid-row: 1 / span 3; }
+.ratio-16-7 .flip-settings { font-size: clamp(16px, 3.4cqw, 40px); }
+@container (max-width: 520px) {
+  .ratio-16-7 .flip-back { display: flex; }
+}
+
+@media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }
+
+/* 23. FEATURED FILM =======================================================
+   business.html → section 4b. A click-to-play film with a poster frame.
+   ========================================================================== */
+.film { padding: 96px 0 112px; }
+.film-head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: end; margin-bottom: 40px;
+}
+.film-head p { max-width: 480px; margin: 0; }
+.film-frame {
+  aspect-ratio: 16 / 9; background: var(--ink);
+  box-shadow: var(--shadow-soft, 0 20px 50px -30px rgba(0,0,0,.35));
+}
+.film-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 900px) {
+  .film { padding: 64px 0 80px; }
+  .film-head { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* 24. WEDDING PACKAGES ====================================================
+   portraits-weddings.html → section 4b. Cards reuse the price styles;
+   this is the add-ons + good-to-know row underneath.
+   ========================================================================== */
+.wedding-notes {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+}
+.wedding-notes h3 { font-family: var(--serif); font-weight: 300; font-size: 28px; color: var(--ink); margin-bottom: 20px; }
+@media (max-width: 900px) {
+  .wedding-notes { grid-template-columns: 1fr; gap: 40px; }
+}
