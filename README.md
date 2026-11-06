@@ -147,3 +147,7 @@ Click (or tap) a photo and it flips to show the camera, lens, focal length, aper
 1. In `business.html`, delete the `<meta name="robots" content="noindex">` line.
 2. In `index.html`, section 3, un-hide Row V (instructions are in the comment) and change "Four ways" back to "Five ways".
 3. Add `<a class="nav-link" href="business.html">Business</a>` back to the header (after Portraits & weddings) and the mobile menu on every page, and `<a href="business.html">Business</a>` to the home footer.
+
+## Email signature
+
+Open **ammedianz.com/email-signature.html**, copy the signature from the white box and paste it into Gmail (steps are on the page). The photo it uses lives at `images/email/ane.jpg`, so keep that file on the site. The page is hidden from Google.
