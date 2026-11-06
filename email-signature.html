@@ -49,7 +49,58 @@
 <!-- ===================== SIGNATURE END ===================== -->
   </div>
 
-  <h1>Add it to Gmail</h1>
+  <h1>Add it to Spark</h1>
+  <p class="note">Spark takes the signature as HTML code. Copy the code with the button, then paste it in.</p>
+  <textarea id="sig-code" readonly style="width:100%;height:140px;font:12px/1.4 monospace;padding:12px;border:1px solid #ddd7ce;background:#fff;box-sizing:border-box;">&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;&quot;&gt;
+  &lt;tr&gt;
+    &lt;td style=&quot;padding:0 18px 0 0;vertical-align:top;&quot;&gt;
+      &lt;a href=&quot;https://ammedianz.com&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://ammedianz.com/images/email/ane.jpg&quot; width=&quot;80&quot; height=&quot;80&quot; alt=&quot;Ane McGrail&quot; style=&quot;display:block;width:80px;height:80px;border:0;&quot;&gt;
+      &lt;/a&gt;
+    &lt;/td&gt;
+    &lt;td style=&quot;padding:0 0 0 18px;border-left:1px solid #ddd7ce;vertical-align:top;&quot;&gt;
+      &lt;div style=&quot;font-family:Georgia,&#x27;Times New Roman&#x27;,serif;font-size:20px;line-height:24px;color:#0c0c0c;&quot;&gt;Ane McGrail&lt;/div&gt;
+      &lt;div style=&quot;font-size:11px;line-height:18px;letter-spacing:2px;text-transform:uppercase;color:#6e6a64;padding:2px 0 8px;&quot;&gt;Photographer &amp;amp; filmmaker&lt;/div&gt;
+      &lt;div style=&quot;font-size:12px;line-height:18px;letter-spacing:3px;color:#0c0c0c;padding:0 0 8px;&quot;&gt;AM MEDIA &lt;span style=&quot;color:#b54a1c;&quot;&gt;NZ&lt;/span&gt;&lt;/div&gt;
+      &lt;div style=&quot;font-size:13px;line-height:20px;color:#3a3a3a;&quot;&gt;
+        &lt;a href=&quot;tel:+64211914837&quot; style=&quot;color:#3a3a3a;text-decoration:none;&quot;&gt;021 191 4837&lt;/a&gt;
+        &amp;nbsp;&lt;span style=&quot;color:#ddd7ce;&quot;&gt;|&lt;/span&gt;&amp;nbsp;
+        &lt;a href=&quot;mailto:ane@ammedianz.com&quot; style=&quot;color:#3a3a3a;text-decoration:none;&quot;&gt;ane@ammedianz.com&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div style=&quot;font-size:13px;line-height:20px;&quot;&gt;
+        &lt;a href=&quot;https://ammedianz.com&quot; style=&quot;color:#b54a1c;text-decoration:none;&quot;&gt;ammedianz.com&lt;/a&gt;
+        &amp;nbsp;&lt;span style=&quot;color:#ddd7ce;&quot;&gt;|&lt;/span&gt;&amp;nbsp;
+        &lt;a href=&quot;https://instagram.com/ammedia_nz&quot; style=&quot;color:#b54a1c;text-decoration:none;&quot;&gt;@ammedia_nz&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div style=&quot;font-family:Georgia,&#x27;Times New Roman&#x27;,serif;font-style:italic;font-size:13px;line-height:20px;color:#6e6a64;padding-top:8px;&quot;&gt;Papamoa based. Have camera, will travel.&lt;/div&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</textarea>
+  <p><button type="button" id="copy-code" style="font:14px Arial,sans-serif;padding:10px 18px;background:#0c0c0c;color:#fff;border:0;cursor:pointer;">Copy the HTML code</button>
+     <span id="copied" class="note" style="margin-left:10px;"></span></p>
+  <p class="note"><strong>Mac:</strong></p>
+  <ol>
+    <li>Open Spark <strong>Settings</strong>, then <strong>Composer</strong>, then <strong>Signatures</strong>.</li>
+    <li>Click the <strong>+</strong> (create) button at the top right.</li>
+    <li>Click <strong>HTML</strong> at the bottom right and paste the code.</li>
+    <li>Save. Under <strong>Default Signature</strong>, pick it for your ammedianz.com account.</li>
+  </ol>
+  <p class="note"><strong>iPhone:</strong></p>
+  <ol>
+    <li>Tap the menu at the top left, then <strong>Settings</strong>, then <strong>Signatures</strong>. Turn on <strong>Use Email Signatures</strong>.</li>
+    <li>Tap <strong>Add Signature</strong>, then <strong>HTML</strong> at the top right, and paste the code.</li>
+    <li>Save. Then <strong>Settings → Mail Accounts</strong> → your account → <strong>Default Signature</strong> → tick it.</li>
+  </ol>
+  <script>
+    document.getElementById('copy-code').addEventListener('click', function () {
+      var t = document.getElementById('sig-code'); t.select();
+      (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject())
+        .catch(function () { document.execCommand('copy'); })
+        .then(function () { document.getElementById('copied').textContent = 'Copied!'; });
+    });
+  </script>
+
+  <h1>Using Gmail instead?</h1>
   <ol>
     <li>In Gmail, click the <strong>gear icon</strong>, then <strong>See all settings</strong>.</li>
     <li>On the <strong>General</strong> tab, scroll to <strong>Signature</strong> and click <strong>Create new</strong>. Name it "AM Media NZ".</li>
