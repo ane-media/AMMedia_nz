@@ -151,3 +151,14 @@ Click (or tap) a photo and it flips to show the camera, lens, focal length, aper
 ## Email signature
 
 Open **ammedianz.com/email-signature.html**, copy the signature from the white box and paste it into Gmail (steps are on the page). The photo it uses lives at `images/email/ane.jpg`, so keep that file on the site. The page is hidden from Google.
+
+## SEO
+
+Each page's `<head>` has an **SEO START … SEO END** block.
+
+- **Title and description:** the `<title>` and `<meta name="description">` lines just above it. Keep titles under 60 characters and descriptions around 150. Update the matching `og:title` / `og:description` lines too.
+- **Social previews:** `images/share/<page>.jpg` (1200 × 630) is the picture shown when a page is shared on Facebook, LinkedIn or iMessage.
+- **Google business details:** `index.html` holds a JSON block (`application/ld+json`) with your name, phone, area and prices. Update the prices there if you change them on the page.
+- **sitemap.xml / robots.txt:** tell Google which pages to index. Add a line to `sitemap.xml` for any new page.
+- **404.html:** shown automatically for any broken link.
+- **Favicons:** `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`.

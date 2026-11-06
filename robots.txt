@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /business.html
+Disallow: /email-signature.html
+
+Sitemap: https://ammedianz.com/sitemap.xml
