@@ -1035,3 +1035,15 @@ html { scroll-behavior: smooth; }
   .sendit::after { background: rgba(12,12,12,.72); }
   .sendit-text { font-size: 16px; }
 }
+
+/* 28. EVENTS — SMALL FILM, TEXT LEFT / VIDEO RIGHT ======================== */
+.film-split {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: center;
+  padding: 80px 24px 96px;
+}
+.film-split-text .heading { margin: 12px 0 20px; }
+.film-split-text p { max-width: 440px; margin: 0 0 14px; }
+.film-split .film-frame { margin: 0; }
+@media (max-width: 900px) {
+  .film-split { grid-template-columns: 1fr; gap: 28px; padding: 64px 24px 80px; }
+}
