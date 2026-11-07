@@ -980,3 +980,25 @@ html { scroll-behavior: smooth; }
 .form-thanks p { max-width: 460px; margin: 0; }
 .form-thanks a { color: var(--accent); }
 .form-error { color: var(--accent); font-size: 14px; margin: 0; }
+
+/* 26. SEEN PORTRAIT SERIES + INVITE TILES ================================
+   projects.html → Seen cards (photo + name + short story) and the
+   "Be part of it" tiles that stand in for photos not taken yet.
+   ========================================================================== */
+.seen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+.seen-card { margin: 0; }
+.seen-card figcaption { padding-top: 20px; display: flex; flex-direction: column; gap: 6px; }
+.seen-card h3 { font-family: var(--serif); font-weight: 300; font-size: 32px; margin: 0; color: var(--ink); }
+.seen-card p { margin: 6px 0 0; max-width: 360px; }
+@media (max-width: 760px) { .seen-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+.photo.invite {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  border: 1px dashed var(--line-dark); background: transparent; text-decoration: none; color: var(--text);
+  transition: border-color .3s ease;
+}
+.photo.invite:hover { border-color: var(--accent); }
+.invite-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; max-width: 320px; }
+.invite-title { font-size: 30px; font-weight: 300; color: var(--ink); line-height: 1.1; }
+.invite-text { font-size: 14px; line-height: 1.5; }
+.invite-link { color: var(--accent); margin-top: 4px; }
