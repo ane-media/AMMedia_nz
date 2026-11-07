@@ -1002,3 +1002,36 @@ html { scroll-behavior: smooth; }
 .invite-title { font-size: 30px; font-weight: 300; color: var(--ink); line-height: 1.1; }
 .invite-text { font-size: 14px; line-height: 1.5; }
 .invite-link { color: var(--accent); margin-top: 4px; }
+
+/* 27. PROJECTS — "RIDERS WANTED" CALL-OUT BANNER ========================== */
+.sendit {
+  position: relative; overflow: hidden; color: #fafafa; background: var(--ink);
+  margin: 40px 0 0; padding: clamp(80px, 11vw, 150px) 0;
+}
+.sendit-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 40%;
+}
+.sendit::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,12,12,.88) 0%, rgba(12,12,12,.7) 45%, rgba(12,12,12,.25) 100%);
+}
+.sendit-inner { position: relative; z-index: 1; max-width: 1200px; }
+.sendit-kicker { color: var(--accent-lt); }
+.sendit-title {
+  font-size: clamp(48px, 8vw, 112px); line-height: .95; font-weight: 400;
+  margin: 18px 0 24px; max-width: 11ch; color: #fafafa;
+}
+.sendit-title em { color: var(--accent-lt); }
+.sendit-text { max-width: 520px; font-size: 17px; line-height: 1.7; color: rgba(250,250,250,.86); }
+.sendit-tags { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 28px 0 0; }
+.sendit-tags li { border: 1px solid rgba(250,250,250,.45); padding: 7px 14px; color: #fafafa; }
+.sendit-btns { justify-content: flex-start; margin-top: 36px; }
+.sendit .sendit-btn { border-color: #fafafa; color: #fafafa; }
+.sendit .sendit-btn:hover { background: #fafafa; color: var(--ink); }
+.sendit .sendit-btn-fill { background: var(--accent-lt); border-color: var(--accent-lt); color: var(--ink); }
+.sendit .sendit-btn-fill:hover { background: #fafafa; border-color: #fafafa; color: var(--ink); }
+@media (max-width: 760px) {
+  .sendit::after { background: rgba(12,12,12,.72); }
+  .sendit-text { font-size: 16px; }
+}
